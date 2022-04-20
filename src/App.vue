@@ -1,28 +1,45 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <topbar></topbar>
+    <wrapper></wrapper>
+    <sidebar></sidebar>
+    <input ref="a" type="range" value="0" />
+    <span>{{ value }}</span>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import topbar from "@/views/topbar/topbar";
+import wrapper from "@/views/wrapper/wrapper";
+import sidebar from "@/views/sidebar/sidebar";
+import { getLoginInfo } from "./service/api_login";
 export default {
-  name: 'App',
+  name: "App",
+  data() {
+    return {
+      value: 0,
+    };
+  },
   components: {
-    HelloWorld
-  }
-}
+    topbar,
+    wrapper,
+    sidebar,
+  },
+  mounted() {
+    let a = 18674017339;
+    let b = "Etidorhpa233";
+    getLoginInfo(a, b).then((res) => {
+      console.log(res);
+    });
+  },
+};
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+<style lang="stylus" scoped>
+#app
+  width 100%
+  min-width 93.75rem
+  height 100vh
+  background-color pink
+  font-weight bold
+</style>>
